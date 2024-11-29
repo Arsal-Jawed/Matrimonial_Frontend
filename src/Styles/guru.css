@@ -1,0 +1,52 @@
+@keyframes pop {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(45deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5) rotate(90deg);
+    }
+}
+
+.animate-pop {
+    animation: pop 3s ease-in-out forwards;
+}
+
+@keyframes shine {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+.shine-animation {
+    animation: shine 3s ease-in-out forwards;
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.animate-typing {
+    animation: typing 5s steps(30) 1s forwards;
+    white-space: nowrap;
+    overflow: hidden;
+}

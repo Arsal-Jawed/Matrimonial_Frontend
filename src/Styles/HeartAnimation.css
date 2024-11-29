@@ -1,0 +1,57 @@
+/* html, body {
+    margin: 0;
+    padding: 0;
+} */
+
+/* #root {
+    position: relative;
+} */
+
+.heart {
+    display: none;
+    position: absolute;
+    animation: zoom-in 1200ms cubic-bezier(0.22, 0.83, 0.68, 0.39) infinite;
+    opacity: 1;
+    transform-origin: center;
+    transform: scale(0);
+}
+
+@keyframes zoom-in {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(3.5);
+        opacity: 0;
+    }
+}
+
+.heart-inner {
+    width: 18px;
+    height: 18px;
+    z-index: 151;
+    background-color: red;
+    transform: rotate(45deg);
+    position: relative;
+}
+
+.heart-inner:before, .heart-inner:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: red;
+}
+
+.heart-inner:before {
+    left: -9px;
+    top: 0;
+}
+
+.heart-inner:after {
+    left: 0;
+    top: -9px;
+}

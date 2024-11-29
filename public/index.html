@@ -2,42 +2,149 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="Web site created using create-react-app" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <title>Matrimonial AI</title>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <style>
+      html {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+      }
+
+      #google_translate_element {
+        position: absolute;
+        top: 0vh;
+        left: 15vw;
+        background-color: transparent;
+        opacity: 0;
+      }
+
+      .goog-te-gadget {
+        font-family: "Arial", sans-serif;
+      }
+
+      .language-select {
+        display: none;
+        position: absolute;
+        top: 7vh;
+        right: 17vw;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px;
+        z-index: 40;
+      }
+
+      .language-option {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+
+      .language-option img {
+        margin-right: 10px;
+      }
+
+      .language-toggle {
+        position: absolute;
+        top: 4vh;
+        right: 24vw;
+        cursor: pointer;
+        z-index: 40;
+      }
+    </style>
   </head>
+
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div id="google_translate_element"></div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+    <img 
+      src="globe.PNG" 
+      alt="Select Language" 
+      class="language-toggle" 
+      onclick="toggleTranslateDropdown(event)" 
+      style="cursor: pointer; width: 32px; height: 32px;" 
+    />
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    <div class="language-select" id="custom_language_select">
+      <div class="language-option" onclick="translateLanguage('en')">
+        <img src="Flags/english.png" alt="English" width="20" loading="lazy" />
+        <span>English</span>
+      </div>
+      <div class="language-option" onclick="translateLanguage('ur')">
+        <img src="Flags/urdu.png" alt="Urdu" width="20" loading="lazy" />
+        <span>Urdu</span>
+      </div>
+      <div class="language-option" onclick="translateLanguage('ar')">
+        <img src="Flags/arabic.png" alt="Arabic" width="20" loading="lazy" />
+        <span>Arabic</span>
+      </div>
+      <div class="language-option" onclick="translateLanguage('tr')">
+        <img src="Flags/turkish.png" alt="Turkish" width="20" loading="lazy" />
+        <span>Turkish</span>
+      </div>
+      <div class="language-option" onclick="translateLanguage('ps')">
+        <img src="Flags/pashto.png" alt="Pashto" width="20" loading="lazy" />
+        <span>Pashto</span>
+      </div>
+      <div class="language-option" onclick="translateLanguage('hi')">
+        <img src="Flags/hindi.png" alt="Hindi" width="20" loading="lazy" />
+        <span>Hindi</span>
+      </div>
+    </div>
+
+    <script type="text/javascript" defer>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages: "en,ur,ar,tr,ps,hi",
+          },
+          "google_translate_element"
+        );
+      }
+
+      function toggleTranslateDropdown(event) {
+        event.stopPropagation();
+        const customSelect = document.getElementById("custom_language_select");
+        customSelect.style.display =
+          customSelect.style.display === "block" ? "none" : "block";
+      }
+
+      function translateLanguage(languageCode) {
+        const combo = document.querySelector(".goog-te-combo");
+        const customSelect = document.getElementById("custom_language_select");
+        if (combo) {
+          combo.value = languageCode;
+          combo.dispatchEvent(new Event("change"));
+          customSelect.style.display = "none";
+        }
+      }
+
+      document.addEventListener("click", function () {
+        const customSelect = document.getElementById("custom_language_select");
+        customSelect.style.display = "none";
+      });
+
+      document
+        .getElementById("custom_language_select")
+        .addEventListener("click", function (event) {
+          event.stopPropagation();
+        });
+    </script>
+
+    <script
+      type="text/javascript"
+      src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+      defer
+    ></script>
   </body>
 </html>
